@@ -1,0 +1,108 @@
+.SignUp {
+  padding: 15%;
+  text-align: center;
+  font-family: "Merriweather", serif;
+  color: #222831;
+  border-spacing: 2%;
+}
+.chenar {
+  padding: 5%;
+  border: transparent;
+  box-shadow: 0px 30px 40px rgba(179, 71, 21, 0.541),
+    -5px -20px 40px rgba(7, 255, 255, 0.411);
+}
+.column {
+  float: left;
+  width: 50%;
+  height: 250px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.Cancel {
+  background-color: #ff0000;
+  width: 15%;
+  margin-top: 1%;
+  border-radius: 50px;
+  border: none;
+  box-shadow: 0px 3px 10px #4b0202;
+}
+
+.Submit {
+  background-color: #77d970;
+  width: 15%;
+  margin-top: 1%;
+  margin-left: 1%;
+  border-radius: 50px;
+  border: 1px solid;
+  box-shadow: 0px 3px 10px rgb(2, 90, 2);
+}
+
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px dotted black;
+  margin-bottom: 1%;
+  text-align: center;
+}
+
+#buton_cancel:hover {
+  transform: scale(1.1);
+  animation-name: cancel;
+  animation-duration: 900ms;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cancel {
+  0% {
+    background-color: #ff0000;
+  }
+  50% {
+    background-color: #950101;
+  }
+  100% {
+    background-color: #ff2626;
+  }
+}
+
+#buton_submit:hover {
+  transform: scale(1.1);
+  animation-name: submit;
+  animation-duration: 900ms;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes submit {
+  0% {
+    background-color: #77d970;
+  }
+  50% {
+    background-color: #71efa3;
+  }
+  100% {
+    background-color: #50cb93;
+  }
+}
+
+.showpassword {
+  font-size: small;
+  position: relative;
+  bottom: 2px;
+}
+.box {
+  position: relative;
+}
+.BUTOANE {
+  text-align: center;
+}
+.login {
+  border: none;
+  background-color: transparent;
+}

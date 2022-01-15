@@ -1,0 +1,22 @@
+.Login{
+    padding: 20%;
+    text-align: center;
+    font-family: "Merriweather", serif;
+    color: #222831;
+    border-spacing: 2%;
+}
+.chenarLogin{
+    padding: 5%;
+    border: transparent;
+    box-shadow: 0px 30px 40px rgba(179, 71, 21, 0.541),
+      -5px -20px 40px rgba(7, 255, 255, 0.411);
+}
+.butonLogin{
+    background-color: #77d970;
+    width: 15%;
+    margin-top: 1%;
+    margin-left: 1%;
+    border-radius: 50px;
+    border: 1px solid;
+    box-shadow: 0px 3px 10px rgb(2, 90, 2);
+}

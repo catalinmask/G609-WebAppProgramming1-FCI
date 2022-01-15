@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="SignUp.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+    <script src="SignUp.js"></script>
+</head>
+
+<body style="background-image: url('https://hdwallsource.com/img/2014/10/blurred-wallpapers-36380-37208-hd-wallpapers.jpg');">
+    <div class="SignUp" id="divMare">
+        <div class="row">
+        <h1><strong>SIGN UP!</strong></h1>
+
+        <div class="chenar" name="ptjava">
+            <div class="column">
+            <label for="Mail">
+                <b>Email</b>
+            </label>
+            <br>
+            <input id="Mail" type="email" placeholder="Enter Email" name="Email"  required> 
+            <br>
+
+            <label for="Username">
+                <b>Username</b>
+            </label>
+            <br>
+            <input id="Username" type="text" placeholder="Enter Username" name="Username" required>
+            <br>
+
+            <label for="Password">
+                <b>Password</b>
+            </label>
+            <br>
+            <input id="Password" type="password" placeholder="Enter Passoword" name="Password" required>
+            <br>
+
+            <label for="secondPassword">
+                <b>2ndPassword</b>
+            </label>
+            <br>
+            <input id="secondPassword" type="password" placeholder="Enter 2nd Password" name="secondPassword" required>
+            <br> 
+            </div> 
+            
+            <div class="colum">
+                <label for="MarcaMasina">
+                    <b>Marca Masina</b>
+                    <br>
+                    <input id="MarcaMasina" type="text" placeholder="Marca Masina" name="MarcaMasina" required>
+                    <br>
+                </label>
+                <label for="KmMasina">
+                    <b>KM Masina</b>
+                    <br>
+                    <input id="KmMasina" type="number" placeholder="KM pe care ii are" name="KmMasina" required>
+                    <br>
+                </label>
+                <label for="KmSchimb">
+                    <b>KM la care se face schimbul</b>
+                    <br>
+                    <input id="KmSchimb" type="number" placeholder="KM la care faci schimbul" name=KmSchimb required>
+                    <br>
+                </label>
+            </div>
+         
+           
+        </div>
+        </div>
+        <div class="BUTOANE">
+            <input class="box" id="checkbox" type="checkbox" name="checkbox" onclick="parola()" >
+            <label for="checkbox" class="showpassword">
+              <b>Show Password</b> 
+            </label>
+            <br>
+            <button class="Cancel" id="buton_cancel"onclick="btnCancel2()" >
+                <b>Cancel<b>
+            </button>
+            <button class="Submit" id="buton_submit"  onclick="sendData()">
+                <b>Submit</b>
+            </button> 
+            <br>
+            <br>
+            <h6>If you already have an account</h6>
+            <a href="login.html">
+                <button class="login">Login</button> 
+            </a>
+           
+        </div>
+    </div>
+    </div>
+    
+</body>
+
+</html>
