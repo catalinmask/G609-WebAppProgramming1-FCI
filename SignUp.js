@@ -11,18 +11,6 @@ function parola() {
   }
 }
 
-function btnCancel2() {
-  const intrebare = document.createElement("div");
-  intrebare.innerHTML =
-    "Warning! Your are about to reset your inputs. Are you sure you want to continue?";
-  intrebare.style.fontSize = "20px";
-  intrebare.style.color = "red";
-  intrebare.style.position = "relative";
-  intrebare.style.textAlign = "center";
-
-  document.getElementById("divMare").appendChild(intrebare);
-}
-
 function sendData() {
   const a = document.getElementsByName("Email")[0].value;
   const b = document.getElementsByName("Username")[0].value;
@@ -75,3 +63,14 @@ function showError(response) {
   errorDiv.appendChild(errorPar);
   body.appendChild(errorDiv);
 }
+
+function btnCancel2() {
+  document.getElementById("Mail").value='';
+  document.getElementById("Username").value='';
+  document.getElementById("Password").value='';
+  document.getElementById("secondPassword").value='';
+  document.getElementById("MarcaMasina").value='';
+  document.getElementById("KmMasina").value='';
+  document.getElementById("KmSchimb").value='';
+}
+
