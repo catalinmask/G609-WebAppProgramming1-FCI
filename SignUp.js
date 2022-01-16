@@ -1,3 +1,4 @@
+const LoginPageUrl="/Users/catalinflorea/Desktop/ProiectFinal/login.html"
 function parola() {
   var pw1 = document.getElementById("Password");
   var pw2 = document.getElementById("secondPassword");
@@ -48,12 +49,29 @@ function sendData() {
     body: JSON.stringify(body),
   };
   fetch("http://localhost:3004/api/v1/signUp", option)
-    .then(showSuccess())
-    .catch(showError(body));
+    .then(showSuccess)
+    .then(Success, Failure)
+    .catch(showError);
 }
-function showSuccess() {
-  alert("Te-ai inregistrat cu success!");
+function showSuccess(response) {
+  if(!response.ok){
+     throw response; //throw error
+  }
+  return response;
 }
-function showError(r) {
-  console.log(JSON.stringify(r));
+function Success(response){
+  window.location.href = LoginPageUrl;
+}
+function Failure(response){
+  return response.JSON().then(showError); 
+}
+
+function showError(response) {
+  console.log(JSON.stringify(response));
+  const body=document.getElementsByTagName("body")[0];
+  const errorDiv=document.createElement("div");
+  const errorPar=document.createElement("p");
+  errorPar.innerText=response.error;
+  errorDiv.appendChild(errorPar);
+  body.appendChild(errorDiv);
 }

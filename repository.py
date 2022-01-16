@@ -58,7 +58,7 @@ def edit_user(conn, username, details):
     set_statement=""
     for key, value in details.items():
         if type(value) == str:
-            set_statement += f"{key}='{value}'," # Key este parte pana in ":" si value valoarea de dupa ":"
+            set_statement += f"{key}='{value}'," # Key este partea pana in ":" si value valoarea de dupa ":"
         else:
             set_statement += f"{key}={value},"
     if len(set_statement) > 1:
