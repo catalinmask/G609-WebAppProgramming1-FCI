@@ -36,7 +36,7 @@ function Login(){
         "password": document.getElementsByName("PasswordLogin")[0].value,
     }
     const params={
-        method: "POST",
+        method: "POST", 
         mode: "cors",
         headers:{
             "Content-Type": "application/json"

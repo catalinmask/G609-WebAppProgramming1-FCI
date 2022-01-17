@@ -1,8 +1,29 @@
-from flask import Flask, request
+from functools import wraps
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+import jwt
+import datetime
 
 from repository import create_user, connect, get_user_password
 app=Flask(__name__)
+app.config['SECRET_KEY'] = 'manancarichard'
+
+
+def token_required(f): #Ruta de verificare dacaam TOKEN
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token=request.args.get('token')
+        if not token:
+            return jsonify({'messege':'Token is missing!'}),403
+        try:
+            data=jwt.decode(token, app.config['SECRET_KEY'])
+        except:
+            return jsonify({'messege':'Token is invalid'}),403
+        return f(*args, **kwargs)
+
+
+
+
 CORS(app)
 database="BazaProiect.db"
 @app.route("/api/v1/signUp", methods=["POST"])
@@ -49,8 +70,8 @@ def sign_in():
                 "error": "--Failed to sign in. Email or password are wrong."
             }
             return error, 401
-
-        return '', 204
+        token=jwt.encode({'username':username, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
+        return jsonify({'token':token}), 204
     except Exception as e:
         error = {
             "error": f"--Failed to sign in. Cause: {e}"
