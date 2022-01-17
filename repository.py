@@ -13,7 +13,7 @@ def create_cursor(conn): # creez cursor pentru baza de date // cursorul se plimb
     return cursor
 
 def get_users(conn):
-    query="select * from users" # *-inseamna "tot" || selecteaza-mi tot din tabelul users
+    query="select * from DateUtilizatori" # *-inseamna "tot" || selecteaza-mi tot din tabelul users
     cursor=conn.cursor()
     data=list(cursor.execute(query)) # cursorul o sa se duca in query, ia tot si baga intr-o lista
     return data # o lista cu toti userii (cu toate datele din tabel)
@@ -34,19 +34,22 @@ def create_user(conn, body):
         body.get("km_masina"),
         body.get("km_schimb")
     ]
+    if userData[0]=='' or userData[1]=='' or userData[2]=='' or userData[3]=='' or userData[4]=='' or userData[5]=='':
+        raise Exception("Missing user information")
+        
     cursor=conn.cursor()
     cursor.execute(query,userData) #cursorul executa query ul de pe linia 28 cu datele de pe linia 29, inlocurieste ????
     conn.commit() # commit salveaza modificarile
 
  
 def delete_user(conn, username):
-    query=f"delete from users where username = '{username}'"
+    query=f"delete from DateUtilizatori where username = '{username}'"
     cursor=conn.cursor()
     cursor.execute(query)
     conn.commit()
 
-def get_user_password(conn, email):
-    query = f"select password from users where email='{email}'"
+def get_user_password(conn, username):
+    query = f"select password from DateUtilizatori where username='{username}'"
     cursor = conn.cursor()
     password = list(cursor.execute(query)) # baga in lista toate parolele din db care se potrivesc cu email uk
     if password:
@@ -63,7 +66,7 @@ def edit_user(conn, username, details):
             set_statement += f"{key}={value},"
     if len(set_statement) > 1:
         set_statement=set_statement[:-1]
-    query=f"update users set {set_statement} where username='{username}'"
+    query=f"update DateUtilizatori  set {set_statement} where username='{username}'"
     cursor = conn.cursor()
     cursor.execute(query)
     conn.commit()

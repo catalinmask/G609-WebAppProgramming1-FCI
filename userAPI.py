@@ -40,10 +40,10 @@ def signup():
 def sign_in():
     try:
         body = request.json
-        email = body.get("email")
+        username = body.get("username")
         password = body.get("password")
         conn = connect(database)
-        existing_password = get_user_password(conn, email)
+        existing_password = get_user_password(conn, username)
         if existing_password is None or password != existing_password:
             error = {
                 "error": "--Failed to sign in. Email or password are wrong."

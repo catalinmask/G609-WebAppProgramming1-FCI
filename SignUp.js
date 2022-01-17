@@ -12,21 +12,14 @@ function parola() {
 }
 
 function sendData() {
-  const a = document.getElementsByName("Email")[0].value;
-  const b = document.getElementsByName("Username")[0].value;
-  const c = document.getElementsByName("Password")[0].value;
-  const d = document.getElementsByName("secondPassword")[0].value;
-  const e = document.getElementsByName("MarcaMasina")[0].value;
-  const f = document.getElementsByName("KmMasina")[0].value;
-  const g = document.getElementsByName("KmSchimb")[0].value;
   const body = {
-    email: a,
-    username: b,
-    Password: c,
-    secondPassword: d,
-    marca_masina: e,
-    km_masina: f,
-    km_schimb: g,
+    "email": document.getElementsByName("Email")[0].value,
+    "username": document.getElementsByName("Username")[0].value,
+    "Password": document.getElementsByName("Password")[0].value,
+    "secondPassword": document.getElementsByName("secondPassword")[0].value,
+    "marca_masina": document.getElementsByName("MarcaMasina")[0].value,
+    "km_masina": document.getElementsByName("KmMasina")[0].value,
+    "km_schimb": document.getElementsByName("KmSchimb")[0].value,
   };
   const option = {
     method: "POST",
@@ -41,27 +34,38 @@ function sendData() {
     .then(Success, Failure)
     .catch(showError);
 }
+
 function showSuccess(response) {
   if(!response.ok){
      throw response; //throw error
   }
   return response;
 }
+
 function Success(response){
   window.location.href = LoginPageUrl;
 }
+
 function Failure(response){
   return response.JSON().then(showError); 
 }
 
 function showError(response) {
   console.log(JSON.stringify(response));
-  const body=document.getElementsByTagName("body")[0];
-  const errorDiv=document.createElement("div");
-  const errorPar=document.createElement("p");
-  errorPar.innerText=response.error;
-  errorDiv.appendChild(errorPar);
-  body.appendChild(errorDiv);
+
+  let errorPar=document.getElementsByName("errorParagraph")[0];
+
+  if(!errorPar){
+   const body=document.getElementsByTagName("body")[0];
+   const errorDiv=document.createElement("div");
+   const errorPar=document.createElement("p");
+   errorPar.innerText=response.error;
+   errorPar.setAttribute("name", "errorParagraph");
+   errorDiv.appendChild(errorPar);
+   body.appendChild(errorDiv);
+  } else{
+    errorPar.innerText = response.error;
+  }
 }
 
 function btnCancel2() {
