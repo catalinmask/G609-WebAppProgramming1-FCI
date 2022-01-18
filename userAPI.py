@@ -1,12 +1,16 @@
 from functools import wraps
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import jwt
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager
 import datetime
 
 from repository import create_user, connect, get_user_password
 app=Flask(__name__)
-app.config['SECRET_KEY'] = 'manancarichard'
+app.config["JWT_SECRET_KEY"] = 'manancarichard'
+jwt = JWTManager(app)
 
 
 #def token_required(f): #Ruta de verificare daca am TOKEN
@@ -20,6 +24,11 @@ app.config['SECRET_KEY'] = 'manancarichard'
 #        except:
 #            return jsonify({'messege':'Token is invalid'}),403
 #        return f(*args, **kwargs)
+
+
+
+
+
 
 CORS(app)
 database="BazaProiect.db"
@@ -54,7 +63,7 @@ def signup():
         return error, 500
 
 
-@app.route("/api/v1/signIn", methods=["POST"])
+@app.route("/api/v1/signIn", methods=["POST","GET"])
 def sign_in():
     try:
         body = request.json
@@ -67,8 +76,12 @@ def sign_in():
                 "error": "--Failed to sign in. Email or password are wrong."
             }
             return error, 401
-        token=jwt.encode({'username':username, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
-        return jsonify({'token':token}), 200
+        #token=jwt.encode({'username':username, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
+        # return jsonify({'token':token}), 200
+        access_token = create_access_token(identity=username)
+        print(access_token)
+        res = {"access_token":access_token}
+        return res
     except Exception as e:
         error = {
             "error": f"--Failed to sign in. Cause: {e}"
@@ -76,8 +89,10 @@ def sign_in():
         return error, 500
 
 @app.route("/api/v1/Account",methods=["GET"])
-def account():
-    return '',200
+@jwt_required() #Verifica daca are token altfel nu intra pe pagina
+def protected():
+    current_user = get_jwt_identity()
+    return jsonify(logged_in_as=current_user), 200
 
 if __name__ == "__main__":
     app.run(debug=True, port=3004)

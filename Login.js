@@ -50,8 +50,9 @@ const AccountPageUrl="/Users/catalinflorea/Desktop/ProiectFinal/Account.html"
     
     
 //}
-
+let ops=null;
 function Login() {
+ 
     const body={
         "username": document.getElementsByName("UsernameLogin")[0].value,
         "password": document.getElementsByName("PasswordLogin")[0].value,
@@ -73,24 +74,44 @@ function Login() {
             }
         })
         .then(data => {
-            localStorage.setItem("token", data.token);
-            window.location.href = AccountPageUrl;
+            sessionStorage.setItem("token", data.access_token);
+           // makeRequest();
+             ops= {
+             method: "GET",
+             headers:{"Authorization": `Bearer` + sessionStorage.token}
+            } 
+            return ops;
         })
+        .then(ops=>{
+            fetch("http://localhost:3004/api/v1/Account",ops)
+            .then(res=>{
+                if(res.status===200) return res.json();
+                else alert("There has been some error");
+            })
+            .catch(error=>{
+                console.error("There was an error!!!",error)
+            }) 
+        }
+            
+        )
         .catch(console.error)
 }
 
-function makeRequest() {
-    let headers = {}
-    if (localStorage.token) {
-        headers = { 'Authorization': localStorage.token }
-    }
-    fetch("http://localhost:3004/api/v1/Account", { headers: headers })
-        .then((res) => {
-            if (res.status == 200) {
-                return res.text()
-            } else {
-                throw Error(res.statusText)
-            }
-        }).then(responseText => console.log(responseText))
-        .catch(console.error)
-}
+// function makeRequest() {
+//     let ops= null;
+//     if (sessionStorage.token) {
+//         ops= {
+//         method: "GET",
+//         headers:{"Authorization": `Bearer` + sessionStorage.token}
+//         } 
+//     }
+//     fetch("http://localhost:3004/api/v1/Account", ops )
+//         .then((res) => {
+//             if (res.status == 200) {
+//                 return res.text()
+//             } else {
+//                 throw Error(res.statusText)
+//             }
+//         }).then(responseText => console.log(responseText)) .then( window.location.href = AccountPageUrl)
+//         .catch(console.error)
+// }
