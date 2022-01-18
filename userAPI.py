@@ -9,20 +9,17 @@ app=Flask(__name__)
 app.config['SECRET_KEY'] = 'manancarichard'
 
 
-def token_required(f): #Ruta de verificare dacaam TOKEN
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token=request.args.get('token')
-        if not token:
-            return jsonify({'messege':'Token is missing!'}),403
-        try:
-            data=jwt.decode(token, app.config['SECRET_KEY'])
-        except:
-            return jsonify({'messege':'Token is invalid'}),403
-        return f(*args, **kwargs)
-
-
-
+#def token_required(f): #Ruta de verificare daca am TOKEN
+#   @wraps(f)
+#    def decorated(*args, **kwargs):
+#        token=request.args.get('token')
+#        if not token:
+#            return jsonify({'messege':'Token is missing!'}),403
+#        try:
+#            data=jwt.decode(token, app.config['SECRET_KEY'])
+#        except:
+#            return jsonify({'messege':'Token is invalid'}),403
+#        return f(*args, **kwargs)
 
 CORS(app)
 database="BazaProiect.db"
@@ -71,13 +68,16 @@ def sign_in():
             }
             return error, 401
         token=jwt.encode({'username':username, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
-        return jsonify({'token':token}), 204
+        return jsonify({'token':token}), 200
     except Exception as e:
         error = {
             "error": f"--Failed to sign in. Cause: {e}"
         }
         return error, 500
 
+@app.route("/api/v1/Account",methods=["GET"])
+def account():
+    return '',200
 
 if __name__ == "__main__":
     app.run(debug=True, port=3004)
