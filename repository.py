@@ -24,6 +24,24 @@ def get_user_by_username(conn, username):
     results=list(cursor.execute(query))
     return results[0] 
 
+def get_user_data_by_username(conn, username):
+    query=f"select email, username, marca_masina, km_masina, km_schimb from DateUtilizatori where username='{username}' "
+    cursor=conn.cursor()
+    dateUtilizatori=list(cursor.execute(query))
+    if len(dateUtilizatori)==0:
+        return {}
+
+    dateUtilizatori=dateUtilizatori[0]
+    date={
+        "email": dateUtilizatori[0],
+        "username": dateUtilizatori[1],
+        "marca_masina": dateUtilizatori[2],
+        "km_masina": dateUtilizatori[3],
+        "km_schimb": dateUtilizatori[4]
+    }
+    return date
+    
+
 def create_user(conn, body):
     query="""insert into DateUtilizatori (email, username, password, marca_masina, km_masina, km_schimb) values (?,?,?,?,?,?)"""
     userData=[

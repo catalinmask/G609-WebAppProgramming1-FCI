@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -7,28 +7,10 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 import datetime
 
-from repository import create_user, connect, get_user_password
+from repository import create_user, connect, get_user_password, get_user_data_by_username
 app=Flask(__name__)
 app.config["JWT_SECRET_KEY"] = 'manancarichard'
 jwt = JWTManager(app)
-
-
-#def token_required(f): #Ruta de verificare daca am TOKEN
-#   @wraps(f)
-#    def decorated(*args, **kwargs):
-#        token=request.args.get('token')
-#        if not token:
-#            return jsonify({'messege':'Token is missing!'}),403
-#        try:
-#            data=jwt.decode(token, app.config['SECRET_KEY'])
-#        except:
-#            return jsonify({'messege':'Token is invalid'}),403
-#        return f(*args, **kwargs)
-
-
-
-
-
 
 CORS(app)
 database="BazaProiect.db"
@@ -95,7 +77,12 @@ def sign_in():
 @jwt_required() #Verifica daca are token altfel nu intra pe pagina
 def protected():
     current_user = get_jwt_identity()
-    return jsonify(logged_in_as=current_user), 200
+
+    conn = connect(database)
+    date = get_user_data_by_username(conn,current_user)
+    return date, 200
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=3004)

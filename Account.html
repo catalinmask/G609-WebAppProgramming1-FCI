@@ -4,14 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="SignUp.css">
+    <script src="Account.js"></script>
     <title>Document</title>
 </head>
 
 
-<body style="background-image: url('https://hdwallsource.com/img/2014/10/blurred-wallpapers-36380-37208-hd-wallpapers.jpg');">
+<body style="background-image: url('https://hdwallsource.com/img/2014/10/blurred-wallpapers-36380-37208-hd-wallpapers.jpg');" onload="Account()">
+    <div class="SignUp" id="divMare">
 
+        <h1><strong>HELLO!</strong></h1>
 
+        <form class="chenar" action="" name="Account" method="get">
 
+            <label for="MailAccount">
+                <b>Email</b>
+            </label>
+            <br>
+            <p id="MailAccount" type="email" placeholder="Enter Email" name="EmailAccount"  required>mail account</p>
+            <br>
+
+            <label for="UsernameAccount">
+                <b>Username</b>
+            </label>
+            <br>
+            <p id="UsernameAccount" type="text" placeholder="Enter Username" name="UsernameAccount" required>username account </p>
+            <br>
+            <label for="MarcaMasinaAccount">
+            <b>Marca Masina</b>
+            <br>
+            <p id="MarcaMasinaAccount" type="text" placeholder="Marca Masina" name="MarcaMasinaAccount" required>masina</p>
+            <br>
+            </label>
+            <label for="KmMasinaAccount">
+            <b>KM Masina</b>
+            <br>
+            <p id="KmMasinaAccount" type="number" placeholder="KM pe care ii are" name="KmMasinaAccount" required>km masinii</p>
+            <br>
+            </label>
+            <label for="KmSchimbAccount">
+            <b>KM la care se face revizia</b>
+            <br>
+            <p id="KmSchimbAccount" type="number" placeholder="KM la care faci schimbul" name="KmSchimbAccount" required>km la care se face revizia</p>
+            <br>
+            </label>
+        </form>
+    </div>
 </body>
 
 
