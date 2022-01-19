@@ -63,7 +63,7 @@ def signup():
         return error, 500
 
 
-@app.route("/api/v1/signIn", methods=["POST","GET"])
+@app.route("/api/v1/signIn", methods=["POST"])
 def sign_in():
     try:
         body = request.json
@@ -71,15 +71,18 @@ def sign_in():
         password = body.get("password")
         conn = connect(database)
         existing_password = get_user_password(conn, username)
+        print(username)
+        print(password)
         if existing_password is None or password != existing_password:
             error = {
                 "error": "--Failed to sign in. Email or password are wrong."
             }
             return error, 401
+
         #token=jwt.encode({'username':username, 'exp':datetime.datetime.utcnow()+datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])
-        # return jsonify({'token':token}), 200
+        #return jsonify({'token':token}), 200
         access_token = create_access_token(identity=username)
-        print(access_token)
+        print(access_token) # Printez token-ul in consola pentru verificare
         res = {"access_token":access_token}
         return res
     except Exception as e:

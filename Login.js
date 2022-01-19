@@ -75,25 +75,8 @@ function Login() {
         })
         .then(data => {
             sessionStorage.setItem("token", data.access_token);
-           // makeRequest();
-             ops= {
-             method: "GET",
-             headers:{"Authorization": `Bearer` + sessionStorage.token}
-            } 
-            return ops;
+            window.location.href = AccountPageUrl;
         })
-        .then(ops=>{
-            fetch("http://localhost:3004/api/v1/Account",ops)
-            .then(res=>{
-                if(res.status===200) return res.json();
-                else alert("There has been some error");
-            })
-            .catch(error=>{
-                console.error("There was an error!!!",error)
-            }) 
-        }
-            
-        )
         .catch(console.error)
 }
 
