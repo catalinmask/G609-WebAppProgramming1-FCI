@@ -28,4 +28,10 @@ input {
     border-bottom: 1px dotted black;
     margin-bottom: 1%;
     text-align: center;
-  }
+}
+
+
+button{
+    background-color: #77d970;
+
+}

@@ -1,4 +1,4 @@
-const AccountPageUrl="/Users/catalinflorea/Desktop/ProiectFinal/Account.html"
+const AccountPageUrl="/Users/catalinflorea/Desktop/Proiect Final/G609-WebAppProgramming1-FCI/Account.html"
 //function ShowSuccess(response){
 //   if(!response.ok){
 //        throw response;// arunc raspunsul sub forma de eroare

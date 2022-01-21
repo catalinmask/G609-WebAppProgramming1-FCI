@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="SignUp.css">
+    <link rel="stylesheet" href="Account.css">
     <script src="Account.js"></script>
     <title>Document</title>
 </head>
@@ -46,6 +47,17 @@
             <b>KM la care se face revizia</b>
             <br>
             <p id="KmSchimbAccount" type="number" placeholder="KM la care faci schimbul" name="KmSchimbAccount" required>km la care se face revizia</p>
+            <br>
+            <label for="KmSchimbAccount">
+            <b>Cati KM faci pe zi aproximativ?</b>
+            <br>
+            <input id="KmPeZi" type="number" placeholder="KM la care faci schimbul" name="KmSchimbAccount" required> </input>
+            <button id="buton_calculeaza" onclick="Calculeaza()">Calculeaza</button>
+            <br>
+            <label for="KmDataSchimb">
+            <b>Data aproximativa cand trebuie sa faci revizia</b>
+            <br>
+            <p id="Data" type="number" placeholder="Data aproximativa " name="Data" required>  </p>
             <br>
             </label>
         </form>
