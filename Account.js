@@ -1,5 +1,6 @@
 var diferenta=0;
 var f='';
+
 function Account(){
     fetch("http://localhost:3004/api/v1/Account", {headers:{"Authorization":"Bearer "+sessionStorage.token}})
         .then(date => date.json())
@@ -15,6 +16,8 @@ function Account(){
           d.innerText=data["km_masina"];
           e.innerText=data["km_schimb"];
           diferenta =data["km_schimb"]-data["km_masina"];
+          f=document.getElementById("Data");
+          f.innerText=localStorage.getItem("dataSchimb");
         })
 }
 
@@ -24,7 +27,9 @@ function Calculeaza(){
   console.log(KmPeZi);
   console.log(diferenta);
   console.log(dataSchimb);
-  f=document.getElementById("Data");
-  f.innerText=dataSchimb;
+  const d = new Date();
+  d.setDate(d.getDate() + dataSchimb);
+  localStorage.setItem("dataSchimb", d);
+  console.log(localStorage.getItem("dataSchimb"));
 }
 

@@ -1,4 +1,4 @@
-const LoginPageUrl="/Users/catalinflorea/Desktop/ProiectFinal/login.html"
+const LoginPageUrl="/Users/catalinflorea/Desktop/Proiect Final/G609-WebAppProgramming1-FCI/login.html"
 function parola() {
   var pw1 = document.getElementById("Password");
   var pw2 = document.getElementById("secondPassword");
